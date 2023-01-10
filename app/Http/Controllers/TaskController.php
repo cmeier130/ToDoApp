@@ -54,7 +54,6 @@ class TaskController extends Controller
     
     public function create(Folder $folder, CreateTask $request)
     {
-        $current_folder = Folder::find($id);
 
         $task = new Task();
         $task->title = $request->title;
@@ -64,7 +63,7 @@ class TaskController extends Controller
        $folder->tasks()->save($task);
 
         return redirect()->route('tasks.index', [
-            'id' => $folder->id,
+            'folder' => $folder->id,
         ]);
         
     }
@@ -105,7 +104,7 @@ class TaskController extends Controller
 
         //3
         return redirect()->route('tasks.index', [
-            'id' => $task->folder_id,
+            'folder' => $task->folder_id,
         ]);
 
     }
